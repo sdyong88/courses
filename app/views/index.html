@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" >
+  </head>
+  <body>
+  	<div id = "_wrapper">
+
+  		<div id = "_top">
+  			<h4>Add a new course</h4>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <p>{{message}}</p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+  			<form action="/add" method="POST">
+  				<p>Name:</p><input type="text" name="name" placeholder="Course Name:">
+  				<p>Description:</p><textarea rows="10" cols = "50" id= "text_1" name="description"></textarea>
+  				<input type="submit" name="submit" value="Add">	
+  			</form>
+
+  		</div>
+  		<!-- This will end the Add a new course box -->
+
+  		<div id = "_bottom">
+  			
+  			<div style="overflow-x:auto;">
+  				<table>
+  					<tr>
+	  					<th>Course Name</th>
+	  					<th>Description</th>
+	  					<th>Date Added</th>
+	  					<th>Action</th>
+	  				</tr>
+	  				
+	  			{% for course in courses %}
+	  				<tr>
+	  					<th>{{course['name']}}</th>
+	  					<th>{{course['description']}}</th>
+	  					<th>{{course['created_at']}}</th>
+	  					<th><a href="/destroy/{{course['id']}}">remove</a></th>
+	  				</tr>
+	  			{% endfor %}
+  				</table>
+  		</div>
+  		<!--  This will end the Course descriptions -->
+  	</div><!-- This is the wrapper! -->
+  </body>
+</html>

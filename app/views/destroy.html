@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Destroy Course</title>
+</head>
+<body>
+	<div id ="wrapper">
+		<div id="main">
+			<h4>Are you sure you want to delete the following courses?</h4>
+			
+			{% for class in course %}
+				<p>Name:<label>{{class['name']}}</label></p>
+				<p>Description:<label>{{class['description']}}</label></p>
+				<br>
+			<button><a href="/">No</a></button>
+
+			<form action="/delete/{{class['id']}}" id="_delete" method="POST">
+				<input type="submit" name="delete" value="Yes! I want to delete this">
+			</form>
+			{% endfor %}
+
+		</div>
+		<!-- THis ends the main box -->
+
+
+	</div>
+	<!-- This will end the wrapper -->
+
+</body>
+</html>
